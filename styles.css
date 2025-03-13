@@ -1,0 +1,332 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7fa;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* App Container */
+/* Default layout where sidebar is visible */
+.app-container {
+    display: flex;
+    width: 100%; /* Assuming the sidebar is 250px wide */
+    transition: width 0.3s ease;
+}
+
+/* Full-width layout when sidebar is hidden */
+.app-container.full-width {
+    width: 100%; /* Full width when sidebar is hidden */
+}
+
+.sidebar {
+    width: 300px; /* Fixed width */
+    min-width: 300px; /* Prevents shrinking below this width */
+    max-width: 300px; /* Prevents expanding beyond this width */
+    background-color: #2d3a3f;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto; /* Adds a scrollbar if content overflows */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional shadow for styling */
+    transition: transform 0.3s ease; /* Smooth transition effect for sidebar toggle */
+}
+
+.sidebar.hidden {
+    display: none; /* Hide the sidebar */
+}
+
+@media (max-width: 600px) {
+    .sidebar {
+        width: 250px; /* Adjust for smaller screens */
+        min-width: 250px;
+        max-width: 250px;
+    }
+}
+
+/* New Chat Button */
+.new-chat-btn, .header-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Space between image and text */
+    background-color: #2d3a3f;
+    width: auto;
+    color: white;
+    border: none;
+    padding: 12px 15px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.new-chat-btn:hover, .header-btn:hover {
+    background-color: #1b2529;
+    transform: scale(1.03);
+}
+
+/* Image Styling */
+.new-chat-btn img, .header-btn img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain; /* Ensures the image maintains its aspect ratio */
+    flex-shrink: 0; /* Prevents resizing of the image */
+    filter: invert(1) brightness(2);
+}
+
+/* Text Styling */
+.new-chat-btn span, .header-btn span {
+    flex-grow: 1; /* Ensures the text uses available space */
+    font-size: 16px;
+    color: white;
+    white-space: nowrap; /* Prevents text wrapping */
+}
+
+/* Chat History */
+.chat-history {
+    overflow-y: auto;
+    flex-grow: 1;
+    margin-top: 10px;
+    padding-right: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #888 transparent;
+}
+
+.chat-history::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-history::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+/* Chat Item */
+.chat-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    background-color: #3a4a50;
+    color: white;
+    margin: 8px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    font-weight: 500;
+    gap: 10px; /* Space between icon and text */
+    max-width: 100%; /* Ensure chat item uses full width of the container */
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflowed text */
+    text-overflow: ellipsis; /* Truncate text with an ellipsis */
+    height: 50px; /* Set fixed height for each chat item */
+    position: relative; /* For positioning the delete button */
+}
+
+/* Delete Button */
+.delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    display: none; /* Initially hidden */
+}
+
+.chat-item:hover .delete-btn {
+    display: block; /* Show delete button on hover */
+}
+
+/* Hover effect for chat items */
+.chat-item:hover {
+    background-color: #4f5e65;
+    transform: scale(1.02); /* Slightly enlarges on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Chat Container */
+.chat-container {
+    flex-grow: 1;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+ul {
+    list-style-type: none; /* Remove bullet points from unordered lists */
+    padding: 0; /* Optional: remove default padding */
+    margin: 0; /* Optional: remove default margin */
+}
+
+/* Header */
+.header {
+    background-color: #2d3a3f;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.header p {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.header .calci a {
+    color: white;
+    text-decoration: none;
+}
+
+.header .calci a:visited,
+.header .calci a:link,
+.header .calci a:hover,
+.header .calci a:active {
+    color: white;
+    text-decoration: none;
+}
+
+
+
+/* Messages */
+.messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+}
+
+.messages::-webkit-scrollbar {
+    width: 8px;
+}
+
+.messages::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.message {
+    margin: 8px 0;
+    padding: 12px;
+    border-radius: 10px;
+    max-width: 75%;
+    word-wrap: break-word;
+    font-size: 18px; /* Increased font size for message text */
+}
+
+.user {
+    background-color: #c7e8d9;
+    align-self: flex-end;
+    border-radius: 15px 15px 0 15px;
+    margin-left: auto;
+}
+
+.bot {
+    background-color: #e5e5e5;
+    align-self: flex-start;
+    border-radius: 15px 15px 15px 0;
+    margin-right: auto;
+}
+
+.bot-message {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bot-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #e5e5e5;
+    object-fit: cover;
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* User Input Styles */
+.user-input {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #ebe6e6;
+    padding-left: 100px;
+}
+
+/* Input Field */
+input {
+    width: 80%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    transition: 0.3s;
+}
+
+input:focus {
+    border: 1px solid #2d3a3f;
+}
+
+/* Send Button Styling */
+button#sendButton {
+    width: auto;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px; /* Space between input field and button */
+}
+
+button#sendButton img {
+    width: 36px; /* Increased size of the image */
+    height: 36px;
+    object-fit: contain;
+}
+
+button#sendButton:hover {
+    transform: scale(1.1); /* Slightly enlarge the button on hover */
+}
+
+button#sendButton:focus {
+    outline: none;
+}
