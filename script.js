@@ -122,7 +122,7 @@ function sendMessage() {
 // Function to get response from the bot API
 async function getBotResponse(query) {
     const apiKey = 'API KEY'; // Replace with your actual API key
-    const url = 'https://api.openai.com/v1/chat/completions';
+    const url = '';
 
     try {
         const response = await fetch(url, {
